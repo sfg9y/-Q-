@@ -2,114 +2,43 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>تحديات القنّاص</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      direction: rtl;
-      text-align: center;
-      padding: 40px;
-    }
-    .question-box {
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 0 10px #aaa;
-      max-width: 500px;
-      margin: auto;
-    }
-    button {
-      margin-top: 10px;
-      display: block;
-      width: 100%;
-      padding: 10px;
-      font-size: 18px;
-      border: none;
-      border-radius: 10px;
-      background-color: #007bff;
-      color: white;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    .result {
-      margin-top: 20px;
-      font-weight: bold;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موقع قناص</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="question-box">
-    <h2 id="question">تحميل السؤال...</h2>
-    <div id="choices"></div>
-    <div class="result" id="result"></div>
-  </div>
-
-  <script>
-    const quiz = [
-      {
-        question: "ما اسم الشخصية الرئيسية في أنمي القنّاص؟",
-        choices: ["كيلوا", "كورابيكا", "غون", "ليوريو"],
-        correct: 2
-      },
-      {
-        question: "من هو خصم غون في اختبار الصيادين وكان يستخدم بطاقات؟",
-        choices: ["هيسوكا", "إيلومي", "نيترُو", "نوبوناغا"],
-        correct: 0
-      },
-      {
-        question: "ما اسم قبيلة كورابيكا؟",
-        choices: ["اليورك", "النين", "العيون الحمراء", "الكوروتا"],
-        correct: 3
-      },
-      {
-        question: "ما هي قدرة غون في النين؟",
-        choices: ["نسخ القوة", "السلسلة", "التحكم بالعقل", "تضخيم اللكمة"],
-        correct: 3
-      },
-      {
-        question: "ما اسم المنظمة التي قتلت قبيلة كورابيكا؟",
-        choices: ["العناكب", "النمل", "الهاكرز", "الوحوش"],
-        correct: 0
-      }
-    ];
-
-    let current = 0;
-
-    function loadQuestion() {
-      if (current >= quiz.length) {
-        document.getElementById("question").textContent = "انتهت الأسئلة، أحسنت!";
-        document.getElementById("choices").innerHTML = "";
-        return;
-      }
-
-      document.getElementById("result").textContent = "";
-      const q = quiz[current];
-      document.getElementById("question").textContent = q.question;
-      const choicesDiv = document.getElementById("choices");
-      choicesDiv.innerHTML = "";
-
-      q.choices.forEach((choice, index) => {
-        const btn = document.createElement("button");
-        btn.textContent = choice;
-        btn.onclick = () => {
-          if (index === q.correct) {
-            document.getElementById("result").textContent = "إجابة صحيحة!";
-          } else {
-            document.getElementById("result").textContent = "إجابة خاطئة!";
-          }
-          current++;
-          setTimeout(loadQuestion, 1500);
-        };
-        choicesDiv.appendChild(btn);
-      });
-    }
-
-    loadQuestion();
-  </script>
+    <h1>أسئلة عن قناص</h1>
+    <form id="quiz-form">
+        <div class="question">
+            <label>1. من اقرب مشرف لقناص؟</label><br>
+            <input type="radio" name="q1" value="أمير" id="q1_1"> أمير
+            <input type="radio" name="q1" value="مصعب" id="q1_2"> مصعب
+            <input type="radio" name="q1" value="محمد" id="q1_3"> محمد
+        </div>
+        <div class="question">
+            <label>2. من الحمار من ذول؟</label><br>
+            <input type="radio" name="q2" value="@s_qk1"> @s_qk1
+            <input type="radio" name="q2" value="@Mo_9_r1"> @Mo_9_r1
+            <input type="radio" name="q2" value="@xliiox"> @xliiox
+        </div>
+        <div class="question">
+            <label>3. وش رايك بالموقع؟</label><br>
+            <input type="radio" name="q3" value="حلو" id="q3_1"> حلو
+            <input type="radio" name="q3" value="معفن" id="q3_2"> معفن
+        </div>
+        <div class="question">
+            <label>4. حضرت فعالية قناص في الشات حق بندر؟</label><br>
+            <input type="radio" name="q4" value="نعم" id="q4_1"> نعم
+            <input type="radio" name="q4" value="لا" id="q4_2"> لا
+        </div>
+        <div class="question">
+            <label>5. قناص عمك؟</label><br>
+            <input type="radio" name="q5" value="نعم وافتخر" id="q5_1"> نعم وافتخر
+            <input type="radio" name="q5" value="اكيييد مستحيل اقول شي غيرها" id="q5_2"> اكيييد مستحيل اقول شي غيرها
+        </div>
+        <button type="submit">إرسال الإجابات</button>
+    </form>
+    <script src="script.js"></script>
 </body>
 </html>
