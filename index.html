@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>اختبار عن قناص</title>
+    <style>
+        body {
+            font-family: 'Tahoma', sans-serif;
+            background: linear-gradient(135deg, #1e1e2f, #3a3a5a);
+            color: #fff;
+            padding: 20px;
+            margin: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #f0c330;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #2c2c3e;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h3 {
+            margin-bottom: 10px;
+        }
+        .answers label {
+            display: block;
+            background: #3d3d5c;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .answers input[type="radio"] {
+            margin-left: 10px;
+        }
+        .answers label:hover {
+            background-color: #505071;
+        }
+        .submit-btn {
+            background-color: #f0c330;
+            color: #000;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto 0;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>اختبار قناص</h1>
+    <div class="quiz-container">
+        <form id="quizForm">
+            <div class="question">
+                <h3>١. من أقرب مشرف لقناص؟</h3>
+                <div class="answers">
+                    <label><input type="radio" name="q1" value="1">أمير</label>
+                    <label><input type="radio" name="q1" value="0">مصعب</label>
+                    <label><input type="radio" name="q1" value="0">محمد</label>
+                </div>
+            </div>
+            <div class="question">
+                <h3>٢. من الحمار من ذول؟</h3>
+                <div class="answers">
+                    <label><input type="radio" name="q2" value="1">@s_qk1</label>
+                    <label><input type="radio" name="q2" value="1">@Mo_9_r1</label>
+                    <label><input type="radio" name="q2" value="1">@xliiox</label>
+                </div>
+            </div>
+            <div class="question">
+                <h3>٣. وش رايك بالموقع؟</h3>
+                <div class="answers">
+                    <label><input type="radio" name="q3" value="1">حلو</label>
+                    <label><input type="radio" name="q3" value="0">معفن</label>
+                </div>
+            </div>
+            <div class="question">
+                <h3>٤. حضرت فعالية قناص في شات بندر؟</h3>
+                <div class="answers">
+                    <label><input type="radio" name="q4" value="1">نعم</label>
+                    <label><input type="radio" name="q4" value="0">لا</label>
+                </div>
+            </div>
+            <div class="question">
+                <h3>٥. قناص عمك؟</h3>
+                <div class="answers">
+                    <label><input type="radio" name="q5" value="1">نعم وافتخر وهو عمي وعمك</label>
+                    <label><input type="radio" name="q5" value="1">أكيد مستحيل أقول غيرها</label>
+                </div>
+            </div>
+            <button type="button" class="submit-btn" onclick="calculateResult()">إرسال</button>
+            <div class="result" id="result"></div>
+        </form>
+    </div>
+
+    <script>
+        function calculateResult() {
+            const form = document.getElementById('quizForm');
+            const data = new FormData(form);
+            let score = 0;
+            let total = 0;
+
+            for (let [name, value] of data.entries()) {
+                total += 1;
+                score += parseInt(value);
+            }
+
+            let resultText = "نتيجتك: " + score + " من " + total + "<br>";
+
+            if (score === total) {
+                resultText += "أنت أسطورة قناص الحقيقية!";
+            } else if (score >= total / 2) {
+                resultText += "أداء جيد، لكن تحتاج مراجعة تاريخ قناص.";
+            } else {
+                resultText += "لاااا، لازم تعيد الاختبار!";
+            }
+
+            if (data.get('q3') === '0') {
+                resultText += "<br>طيب أتحداك تسوي زيه!";
+            }
+
+            if (data.get('q4') === '0') {
+                resultText += "<br>لا تعيدها عشان ما أزعل منك.";
+            }
+
+            document.getElementById('result').innerHTML = resultText;
+        }
+    </script>
+</body>
+</html>
